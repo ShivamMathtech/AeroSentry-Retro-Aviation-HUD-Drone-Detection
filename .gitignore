@@ -1,0 +1,16 @@
+.venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+*.pt
+*.onnx
+*.engine
+*.sqlite*
+*.db
+*.log
+recordings/
+screenshots/
+logs/
+runs/
+settings.json
+.env

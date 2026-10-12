@@ -1,0 +1,23 @@
+AEROSENTRY — QUICK START
+
+1. Extract the complete ZIP.
+2. Install Python 3.12 x64 with the Python Launcher.
+3. Double-click install.bat (internet required for dependencies).
+4. Double-click run.bat.
+
+First launch = clearly labeled SIMULATION. No camera or model is required.
+To force simulation later, use run_simulation.bat.
+
+REAL DRONE DETECTION:
+Press F2, disable Simulation, select camera/video/RTSP, select your trusted local
+Ultralytics drone-trained .pt model, inspect its classes and click OK.
+
+MODEL WEIGHTS ARE NOT INCLUDED. Generic COCO models do not have a drone class.
+Do not rename generic weights to drone.pt expecting drone detection.
+
+Controls: Space pause | L lock | N next | R reset | V source | H overlays
+O optical/HUD | C screenshot | F9 record | F2 settings | F1 help | F11 full screen
+
+Full setup, troubleshooting, output locations and test notes: README.md
+Preview: docs/hud-preview.png
+Validation: docs/TEST_REPORT.md

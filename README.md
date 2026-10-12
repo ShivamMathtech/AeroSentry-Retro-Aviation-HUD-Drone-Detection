@@ -49,22 +49,22 @@ and rerun tests; the shipped dependency set is deliberately pinned.
 
 ## Controls
 
-| Key | Action |
-| --- | --- |
-| F2 / right click | Settings, model and input selection |
-| Space | Pause/resume capture and processing |
-| L | Toggle selected visual target lock |
-| N | Cycle visible track IDs |
-| R | Reset tracker state and trails without reopening input |
-| V | Open source settings / reopen source |
-| H | Hide/show instrument graphics; mode labels remain |
-| O | Switch LIVE OPTICAL / HUD ONLY |
-| C | Save screenshot |
-| F9 | Start/stop annotated HUD recording |
-| F6 | Show recent SQLite events |
-| F11 | Full screen |
-| Esc | Release selected target; close a modal |
-| F1 | Help |
+| Key              | Action                                                 |
+| ---------------- | ------------------------------------------------------ |
+| F2 / right click | Settings, model and input selection                    |
+| Space            | Pause/resume capture and processing                    |
+| L                | Toggle selected visual target lock                     |
+| N                | Cycle visible track IDs                                |
+| R                | Reset tracker state and trails without reopening input |
+| V                | Open source settings / reopen source                   |
+| H                | Hide/show instrument graphics; mode labels remain      |
+| O                | Switch LIVE OPTICAL / HUD ONLY                         |
+| C                | Save screenshot                                        |
+| F9               | Start/stop annotated HUD recording                     |
+| F6               | Show recent SQLite events                              |
+| F11              | Full screen                                            |
+| Esc              | Release selected target; close a modal                 |
+| F1               | Help                                                   |
 
 Shortcuts belong to the canvas and do not capture text typed into settings fields.
 Source/model changes stop the previous pipeline before opening the next one. Reopening
@@ -127,7 +127,7 @@ From the extracted `aerosentry_hud` folder in PowerShell:
 ```powershell
 .\.venv\Scripts\python.exe main.py --simulation
 .\.venv\Scripts\python.exe main.py --live --model "models\drone.pt" --source 0
-.\.venv\Scripts\python.exe main.py --live --model "models\drone.pt" --source "D:\video\flight.mp4" --classes 0
+.\.venv\Scripts\python.exe main.py --live --model "models\best.pt" --source "F:\pj\AeroSentry-HUD-Source\aerosentry_hud\vid\drone.mp4" --classes 0
 .\.venv\Scripts\python.exe main.py --live --model "models\drone.pt" --source "rtsp://camera/stream"
 .\.venv\Scripts\python.exe main.py --simulation --screenshot "preview.png"
 ```
@@ -184,20 +184,20 @@ requirements. Native PySide6 is the primary UI; simulation is isolated from live
 
 ## Troubleshooting
 
-| Symptom | Action |
-| --- | --- |
-| `py -3.12` not found | Install Python 3.12 x64 and the launcher; rerun install.bat. |
-| NumPy/torch build errors | Use the 3.12 environment created by install.bat, not Python 3.14. |
-| Missing model | Select an existing trusted `.pt` file; a filename alone does not download it. |
-| No recognized drone class | Inspect model classes and use a drone-trained model; COCO is insufficient. |
-| Camera unavailable | Close other camera apps, enable Windows camera access for desktop apps, try index 1, reopen with V. |
-| Camera disconnects | The HUD reports SOURCE ERROR; check connection, then V → OK to reopen. |
-| Low FPS | Lower inference size to 320, use smaller weights, disable CRT/glow, lower the processing cap. |
+| Symptom                        | Action                                                                                                                   |
+| ------------------------------ | ------------------------------------------------------------------------------------------------------------------------ |
+| `py -3.12` not found           | Install Python 3.12 x64 and the launcher; rerun install.bat.                                                             |
+| NumPy/torch build errors       | Use the 3.12 environment created by install.bat, not Python 3.14.                                                        |
+| Missing model                  | Select an existing trusted `.pt` file; a filename alone does not download it.                                            |
+| No recognized drone class      | Inspect model classes and use a drone-trained model; COCO is insufficient.                                               |
+| Camera unavailable             | Close other camera apps, enable Windows camera access for desktop apps, try index 1, reopen with V.                      |
+| Camera disconnects             | The HUD reports SOURCE ERROR; check connection, then V → OK to reopen.                                                   |
+| Low FPS                        | Lower inference size to 320, use smaller weights, disable CRT/glow, lower the processing cap.                            |
 | No boxes below a low threshold | ByteTrack also has its own activation threshold; the shipped tracker defaults require sufficiently confident detections. |
-| RTSP cannot open | Verify URL and network in your player; use an OpenCV/FFmpeg-readable stream. Open/read timeouts are configured. |
-| End of video | Final frame stays visible with END OF VIDEO; V → OK restarts playback. |
-| Settings corrupted | Rename settings.json in the output folder; the app falls back to simulation. |
-| Slow shutdown | Wait for inference and decoder cleanup; a stuck third-party driver can require closing again after 8 seconds. |
+| RTSP cannot open               | Verify URL and network in your player; use an OpenCV/FFmpeg-readable stream. Open/read timeouts are configured.          |
+| End of video                   | Final frame stays visible with END OF VIDEO; V → OK restarts playback.                                                   |
+| Settings corrupted             | Rename settings.json in the output folder; the app falls back to simulation.                                             |
+| Slow shutdown                  | Wait for inference and decoder cleanup; a stuck third-party driver can require closing again after 8 seconds.            |
 
 Ordinary stop releases captures and finishes writers in their owner threads. A driver
 that ignores OpenCV timeouts cannot be forcibly interrupted safely in-process; the
